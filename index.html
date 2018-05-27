@@ -1,0 +1,244 @@
+<!-- Project based on: http://tobiasahlin.com/moving-letters -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Love</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,900' rel='stylesheet' type='text/css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script>var ml = { timelines: {}};</script>
+  <style>
+    body {
+      font: 14px "Source Sans Pro", Arial, Helvetica, sans-serif;
+      color: #fff;
+      text-align: center;
+      opacity: 0.7;
+
+    }
+
+    .moving-letters {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: 100px auto;
+      height: 200px;
+    }
+  </style>
+</head>
+<body id = 'body'>
+<div class="moving-letters">
+  <h1 class="ml">
+  <span class="text-wrapper">
+    <span class="line line1"></span>
+    <span class="letters letters-left">Once</span>
+    <span class="letters ampersand">❤</span>
+    <span class="letters letters-right">_Lab</span>
+    <span class="line line2"></span>
+  </span>
+    <p class ='description'>We're under construction. Please check back for an update soon.</p>
+  </h1>
+</div>
+
+
+  <!--more-->
+
+  <script>
+
+      ml.timelines["ml"] = anime.timeline({loop: false})
+          .add({
+              targets: '.ml .line',
+              opacity: [0,.5],
+              scaleX: [0, 1.5],
+              easing: [.17,.84,.53,1.7],
+              duration: 1500
+          }).add({
+              targets: '.ml .line',
+              opacity: 1,
+              scaleX: [1.5],
+              easing: "easeOutExpo",
+              translateY: function(e, i, l) {
+                  var offset = -1.425 + 1.425*2*i;
+                  return offset + "em";
+              },
+              duration: 1500
+          }).add({
+              targets: '.ml .letters-left',
+              opacity: [0,1],
+              translateY: '-0.2em',
+              easing: "easeOutExpo",
+              duration: 1000,
+
+          }).add({
+              targets: '.ml .letters-right',
+              opacity: [0,1],
+              translateY: '0.2em',
+              easing: "easeOutExpo",
+              duration: 1500,
+
+          }).add({
+              targets: ['.ml .letters-left','.ml .letters-right'],
+              opacity: 0,
+              duration: 1000,
+              easing: "easeOutExpo",
+              delay: 500
+          }).add({
+              targets: '.ml .line',
+              scaleX: [2.5],
+              easing: "easeOutExpo",
+              translateY: function(e, i, l) {
+                  var offset = -(-0.625 + 0.625*2*i)*0.01;
+                  return offset + "em";
+              },
+              duration: 600
+          }).add({
+              targets: '.ml .line',
+              opacity: [1,0.3],
+              scaleX: [2.5, -2],
+              easing: [.83,-0.03,.22,.99],
+              duration: 1200
+          }).add({
+              targets: ['.ml .line'],
+              opacity: [0.3,0.2],
+              scaleX: [-2,1.25],
+              easing: [.83,-0.03,.22,.99],
+              duration: 1200,
+          }).add({
+              targets: ['.ml .line'],
+              opacity: [0.2,0.1],
+              scaleX: [1.25,0],
+              easing: [.83,-0.03,.22,.99],
+              duration: 1200,
+          }).add({
+              targets: '.ml .ampersand',
+              translateX: '-0.75em',
+              duration: 100
+          }).add({
+              targets: '.ml .ampersand',
+              opacity: [0,1],
+              translateX: '-0.75em',
+              scaleY: [0.1, 1],
+              easing: 'easeOutElastic',
+              duration: 600,
+              delay: 500
+          }).add({
+              targets: ['.ml .ampersand'],
+              translateX:[Math.random()*10+'em',-Math.random()*10+'em',Math.random()*10+'em',-Math.random()*15+'em',Math.random()*5+'em',0,Math.random()*5+'em'],
+              translateY: [Math.random()*10+'em',-Math.random()*10+'em',-Math.random()*10+'em',Math.random()*15+'em',-Math.random()*5+'em',0,Math.random()*8+'em'],
+              scale:[4,1.2,6.4,0.8,8,0.4,100],
+              duration: 5500,
+              easing: [.16,.72,.26,.96]
+          }).add({
+              targets: '.description',
+              opacity: [0,1],
+              translateY: "-1em",
+              scaleY:[0,0.5],
+              scaleX:[0,0.5],
+              easing: "easeOutExpo",
+              duration: 1200,
+          })
+  </script>
+
+  <style>
+    .moving-letters {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin: 0;
+      height: 100%;
+      width: 100%
+    }
+
+
+    .ml {
+
+      position: relative;
+      font-weight: 300;
+      font-size: 4.5em;
+      color: #402d2d;
+
+    }
+
+    .ml .text-wrapper {
+      position: relative;
+      display: inline-block;
+      padding-top: 0.1em;
+      padding-right: 0.05em;
+      padding-bottom: 0.15em;
+      line-height: 1em;
+    }
+
+    .ml .line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 3px;
+      width: 100%;
+      background-color: #402d2d;
+      transform-origin: 0.5 0;
+    }
+
+    .ml .ampersand {
+      font-family: Baskerville, "EB Garamond", serif;
+      font-weight: 400;
+      font-size: 0.7em;
+      color:red;
+      width: 1em;
+      margin-right: -0.1em;
+      margin-left: -0.1em;
+
+      font-size: 72px;
+
+
+    }
+
+    .ml .letters {
+      display: inline-block;
+      opacity: 0;
+    }
+
+    .letters-left {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .letters-right {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .description {
+      font-size: 1em;
+      opacity: 0;
+      color: azure;
+    }
+
+
+  </style>
+
+<script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    color= getRandomColor();
+    var setHeartColor = function (){
+        document.getElementById("body").style.backgroundColor = color;
+    }
+
+    setHeartColor();
+</script>
+
+</body>
+</html>
