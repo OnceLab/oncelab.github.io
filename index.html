@@ -49,7 +49,8 @@
   <!--more-->
 
   <script>
-
+		heartX = 10 - 20*Math.random()
+		heartY = 10 - 20*Math.random()
       ml.timelines["ml"] = anime.timeline({loop: false})
           .add({
               targets: '.ml .line',
@@ -116,12 +117,14 @@
               duration: 1200,
           }).add({
               targets: '.ml .ampersand',
-              translateX: '-0.75em',
+              translateX: heartX + 'em',
+              translateY: heartX + 'em',
               duration: 100
           }).add({
               targets: '.ml .ampersand',
               opacity: [0,1],
-              translateX: '-0.75em',
+              translateX: heartX + 'em',
+              translateY: heartX + 'em',
               scaleY: [0.1, 1],
               easing: 'easeOutElastic',
               duration: 600,
@@ -148,12 +151,13 @@
     .moving-letters {
       display: flex;
 
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: center;
 
-      margin: 0;
+      margin-top: 15em;
+	  
       height: 100%;
-      width: 100%
+      width: 100%;
     }
 
 
